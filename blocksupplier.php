@@ -42,7 +42,7 @@ class BlockSupplier extends Module
 
 		$this->displayName = $this->l('Suppliers block');
         $this->description = $this->l('Adds a block displaying your product suppliers.');
-		$this->ps_versions_compliancy = array('min' => '1.5.6.1', 'max' => _PS_VERSION_);
+		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
     }
 
 	function install()
