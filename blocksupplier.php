@@ -38,7 +38,7 @@ class BlockSupplier extends Module
 		$this->need_instance = 0;
 
         $this->bootstrap = true;
-		parent::__construct();	
+		parent::__construct();
 
 		$this->displayName = $this->l('Suppliers block');
         $this->description = $this->l('Adds a block displaying your product suppliers.');
@@ -56,15 +56,6 @@ class BlockSupplier extends Module
 			)
 			return false;
 
-		$theme = new Theme(Context::getContext()->shop->id_theme);
-		if ((!$theme->default_right_column || !$this->registerHook('rightColumn'))
-			&& (!$theme->default_left_column || !$this->registerHook('leftColumn'))
-		)
-		{
-			parent::uninstall();
-
-			return false;
-		}
 		Configuration::updateValue('SUPPLIER_DISPLAY_TEXT', true);
 		Configuration::updateValue('SUPPLIER_DISPLAY_TEXT_NB', 5);
 		Configuration::updateValue('SUPPLIER_DISPLAY_FORM', false);
@@ -84,7 +75,7 @@ class BlockSupplier extends Module
 
 		return $result;
 	}
-	
+
 	function hookDisplayLeftColumn($params)
 	{
 		$id_lang = (int)Context::getContext()->language->id;
@@ -136,7 +127,7 @@ class BlockSupplier extends Module
 	{
 		$this->context->controller->addCSS(($this->_path).'blocksupplier.css', 'all');
 	}
-	
+
 	public function hookActionObjectSupplierUpdateAfter($params)
 	{
 		$this->_clearCache('blocksupplier.tpl');
@@ -151,7 +142,7 @@ class BlockSupplier extends Module
 	{
 		$this->_clearCache('blocksupplier.tpl');
 	}
-	
+
 	public function renderForm()
 	{
 		$fields_form = array(
@@ -209,7 +200,7 @@ class BlockSupplier extends Module
 				)
 			),
 		);
-		
+
 		$helper = new HelperForm();
 		$helper->show_toolbar = false;
 		$helper->table =  $this->table;
@@ -230,7 +221,7 @@ class BlockSupplier extends Module
 	}
 
 	public function getConfigFieldsValues()
-	{		
+	{
 		return array(
 			'SUPPLIER_DISPLAY_TEXT' => Tools::getValue('SUPPLIER_DISPLAY_TEXT', Configuration::get('SUPPLIER_DISPLAY_TEXT')),
 			'SUPPLIER_DISPLAY_TEXT_NB' => Tools::getValue('SUPPLIER_DISPLAY_TEXT_NB', Configuration::get('SUPPLIER_DISPLAY_TEXT_NB')),
