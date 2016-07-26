@@ -38,11 +38,11 @@ class BlockSupplier extends Module
 		$this->need_instance = 0;
 
         $this->bootstrap = true;
-		parent::__construct();	
+		parent::__construct();
 
 		$this->displayName = $this->l('Suppliers block');
         $this->description = $this->l('Adds a block displaying your product suppliers.');
-		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => '1.6.99.99');
     }
 
 	function install()
@@ -84,7 +84,7 @@ class BlockSupplier extends Module
 
 		return $result;
 	}
-	
+
 	function hookDisplayLeftColumn($params)
 	{
 		$id_lang = (int)Context::getContext()->language->id;
@@ -136,7 +136,7 @@ class BlockSupplier extends Module
 	{
 		$this->context->controller->addCSS(($this->_path).'blocksupplier.css', 'all');
 	}
-	
+
 	public function hookActionObjectSupplierUpdateAfter($params)
 	{
 		$this->_clearCache('blocksupplier.tpl');
@@ -151,7 +151,7 @@ class BlockSupplier extends Module
 	{
 		$this->_clearCache('blocksupplier.tpl');
 	}
-	
+
 	public function renderForm()
 	{
 		$fields_form = array(
@@ -209,7 +209,7 @@ class BlockSupplier extends Module
 				)
 			),
 		);
-		
+
 		$helper = new HelperForm();
 		$helper->show_toolbar = false;
 		$helper->table =  $this->table;
@@ -230,7 +230,7 @@ class BlockSupplier extends Module
 	}
 
 	public function getConfigFieldsValues()
-	{		
+	{
 		return array(
 			'SUPPLIER_DISPLAY_TEXT' => Tools::getValue('SUPPLIER_DISPLAY_TEXT', Configuration::get('SUPPLIER_DISPLAY_TEXT')),
 			'SUPPLIER_DISPLAY_TEXT_NB' => Tools::getValue('SUPPLIER_DISPLAY_TEXT_NB', Configuration::get('SUPPLIER_DISPLAY_TEXT_NB')),
